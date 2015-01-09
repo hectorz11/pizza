@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %} Contactanos {% endblock %}
+{% block content %}
+
+<p>Para cualquier sugerencia o consulta, no dudes en contactar con nosotros<p>
+
+{% if info_enviado %}
+	Gracias por enviar un comentario, nos pondremos en contacto contigo
+	<br>
+	La informacion recibida fue la siguiente</br>
+	<p>Email utilizado: {{email}}</p>
+	<p>Titulo: {{titulo}}</p>
+	<p>Texto Citado: </p><br><br>
+	<h3>{{texto}}</h3>
+{% else %}
+<form action="." method="POST">
+	<table width="85%" border=1>
+		<tr>
+			<td align="center">	
+				{% csrf_token %}
+				{{form.as_p}}
+			</td>
+			<td align="center"><img src="/media/images/pizza-1.jpg" width="500px" height="500px"/></td>
+		</tr>
+	<button class="btn btn-primary" type="submit">Enviar Comentario</button>
+	<br><br>
+	</table>
+</form>
+{% endif %}
+
+{% endblock %}

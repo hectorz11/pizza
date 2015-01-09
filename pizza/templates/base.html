@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{% block title %} Bienvenidos {% endblock %}
+	</title>
+	<meta name="google-site-verification" content="QApGjbwqfgqY8NYAB6Wc6q1emBUc81cWx6b2g8LJSdg" />
+	<link rel="stylesheet" href="/media/bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="/media/bootstrap/css/bootstrap-responsive.css">
+	<link rel="stylesheet" href="/media/css/style.css">
+	<link rel="stylesheet" href="/media/css/estilos.css">
+	<link rel="stylesheet" herf="/media/css/pizzas.css">
+	<script src="/media/js/jquery.js"></script>
+	<script src="/media/js/jquery.form.min.js"></script>
+	<script src="/media/js/demo.js"></script>
+	<script src="/media/bootstrap/js/bootstrap.js"></script>
+	<script src="/media/js/jquery-1.7.1.min.js"></script>
+    <script src="/media/js/superfish.js"></script>
+    <script src="/media/js/jquery.easing.1.3.js"></script>
+    <script src="/media/js/jquery.cycle.all.min.js"></script>
+	<style type="text/css">
+		body{
+			padding-top: 60px;
+			padding-bottom: 40px;
+		}
+		.sidebar{
+			padding: 9px 0;
+		}
+	</style>
+</head>
+<body>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container-fluid">
+			<a class="brand" href="{% url 'vista_principal' %}"> Come las mejores Pizzas </a>
+			{% if user.is_authenticated %}
+			<p class="navbar-text pull-right"> Usuario {{user.username}}</p>
+			{% endif %}
+			<ul class="nav">
+				<li><a href="/productos/page/1/">Pizzas </a></li>
+				<li><a href="/categorias/page/1/">Categorias </a></li>
+				<li><a href="{% url "vista_contacto" %}">Contactenos</a></li>
+				<li><a href="{% url "vista_about" %}">Acerca de ...</a></li>
+				{% if user.is_authenticated %}
+				<li><a href="{% url "vista_logout" %}">Cerrar Sesion</a></li>
+				{% else %}
+				<li><a href="{% url "vista_login" %}">Login</a></li>
+				{% endif %}
+			</ul>
+			</div>
+		</div><!--/inner-->	
+	</div><!--/navbar-->
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span10">
+				<div class="hero-unit">
+					{% block content%}
+					{% endblock %}
+				</div>
+			</div><!--/span-->
+			<div class="span2">
+				<div class="well sidebar-nav">
+					<ul class="nav nav-list">
+						<li class="nav-header">Mi perfil</li>
+						<br><p align="justify">
+						{% if user.is_authenticated %}
+							<p>Bienvenido {{ user }}</p>
+							<img src="{{get_image_profile}}" width="50px" height="50px"/>
+						{% else %}
+							<a href="/login/" class="btn btn-primary">Login</a>
+						{% endif %}
+						</p>
+					</ul>
+				</div><!--/.well-->
+				<div class="well sidebar-nav">
+					<img src="/media/images/cocacola.jpg"/>
+				</div><!--/.well-->
+				<div class="well sidebar-nav">
+					<img src="/media/images/fanta.jpg"/>
+				</div><!--/.well-->
+				<div class="well sidebar-nav">
+					<img src="/media/images/incacola.jpg"/>
+				</div><!--/.well-->
+			</div><!--/span-->
+		</div><!--/row-->
+	<hr>
+	<footer>
+		<p>&copy; Open Project 2014. Version Django: {{ django_version }}</p>
+	</footer>
+	</div><!--/.fluid-container-->
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+</body>
+</html>

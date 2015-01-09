@@ -1,0 +1,192 @@
+
+/*********************************header*************************************/
+header{
+	width:950px;
+	margin:0 auto;
+	background:url() no-repeat center bottom;
+	padding:0 0 99px 0;
+}
+	#page1 header {padding:0;}
+	header .inner {
+		padding:35px 40px 20px 40px;
+	}
+.logo {
+	display:inline-block;
+	padding:0 !important;
+	position:relative;
+	z-index:99;
+}
+.logo a {
+	position:relative;
+	background: url() no-repeat 0 0;
+	height:65px;
+	width:204px;
+	overflow:hidden;
+	text-indent:-99em;
+	display:block;
+}
+
+/********************** Slider ************************/
+.mp-slider .items {display:none;}
+.mp-slider {
+	overflow:visible !important;
+}
+.slider-container {
+	position:relative;
+	z-index:1;
+	height:484px;
+	width:950px;
+	margin:-115px auto 0 auto;
+	padding:0;
+}
+.mp-slider {
+	height:484px;
+}
+	.mp-slider div {display:none; position:relative; background:none !important;}
+
+#mp-pags-cont {display:none;}
+
+#mp-pags, #mp-pags-cont-extra {
+	text-align:center;
+	margin-top:-77px;
+}
+	#mp-pags li, #mp-pags-cont-extra li {
+		display:inline-block;
+		width:142px;
+		height:142px;
+		border-radius:71px;
+		margin:0 3px;
+		overflow:hidden;
+		position:relative;
+		z-index:50;
+		background:url() no-repeat center -22px;
+		background-color:#c4b44d;
+	}
+	#mp-pags li:first-child, #mp-pags-cont-extra li:first-child {
+		background-color:#661e3b;
+	}
+	#mp-pags li:first-child+li, #mp-pags-cont-extra li:first-child+li {
+		background-color:#e87f2c;
+	}
+	#mp-pags li a, #mp-pags-cont-extra li a {
+		display:block;
+		font-size:18px;
+		line-height:20px;
+		font-weight:600;
+		font-family: 'Open Sans', sans-serif;
+		color:#fff;
+		text-decoration:none;
+		text-transform:uppercase;
+		padding:52px 0 150px 0;
+		background:url() no-repeat center -22px;
+	}
+		#mp-pags li:hover, #mp-pags li.activeSlide, #mp-pags-cont-extra li:hover {
+			background-position:center 22px;	
+		}
+		
+	.mp-slider div a {
+		color:#c4b44d;
+		font-size:14px;
+		text-decoration:underline;
+		text-transform:uppercase;
+		font-family: 'Open Sans', sans-serif;
+		position:absolute;
+		bottom:79px;
+		left:38px;
+	}
+		.mp-slider div a:hover {
+			text-decoration:none;
+		}
+		.mp-slider div:first-child a {
+			color:#661e3b;
+		}
+		.mp-slider div:first-child+div a {
+			color:#e87f2c;
+		}
+/********************** Navigation ************************/
+nav {
+	border:1px solid #dcdcdc;
+	padding:11px 0;
+}
+
+.sf-menu{
+	min-height:27px;
+	padding:0;
+	margin:0;
+	font-size:0;
+	line-height:0;
+	position:relative;
+	z-index:99;
+}
+.sf-menu ul{
+	position:absolute;
+	top:-999em;
+	width:160px;
+	left:0;
+	display:none;
+	background:#fff;
+	padding:10px 0;
+	box-shadow:0 0 2px #ccc;
+}
+.sf-menu > li{
+	position:relative;
+	display:inline-block;
+	z-index:99;
+	border-left:1px solid #dcdcdc;
+}
+	.sf-menu > li:first-child {border:none;}
+.sf-menu > li > a {
+	text-decoration:none;
+	display:block !important;
+	font-family: 'Open Sans', sans-serif;
+	font-weight:600;
+	font-size:14px;
+	line-height:19px;
+	text-transform:lowercase;
+	text-decoration:none;
+	color:#2b2b2b;
+	padding:4px 43px;
+	text-shadow:1px 1px #fbfbfb;
+	position:relative;
+	z-index:99;
+}
+#page1 .sf-menu > li > a {
+	background:#fff;	
+}
+
+	.sf-menu > li.current > a, .sf-menu > li:hover > a, .sf-menu > li.sfHover > a {
+		color:#c7c5c5;
+		text-decoration:none;
+	}
+
+.sf-menu li:hover ul,.sf-menu li.sfHover ul{top:42px; left:0; z-index:999;}
+.sf-menu li:hover li ul,ul.sf-menu li.sfHover li ul{top:-999em}
+.sf-menu li.current,.sf-menu li:hover,.sf-menu li.sfHover{
+	text-decoration:none;
+}
+.sf-menu li li a{
+	display:block;
+	margin:0;
+	position:relative;
+	text-decoration:none;
+	font-size:14px;
+	line-height:18px;
+	color:#c7c5c5;
+	overflow:hidden;
+	padding:8px 5px 8px 15px;
+	text-transform:lowercase;
+	font-family: 'Open Sans', sans-serif;
+}
+.sf-menu li li > a:hover, .sf-menu li li.sfHover > a, .sf-menu li li.current > a{
+	color:#2b2b2b;
+}
+.sf-menu li li li a {
+	background:url();
+}
+.sf-menu li li{
+	float:none;
+	position:relative;
+	margin:0 0 1px 0;
+}
+
+.sf-menu li li:hover ul,ul.sf-menu li li.sfHover ul{left:163px;top:-10px;}

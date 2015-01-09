@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block title %} Inicio - Bienvenidos {% endblock %}
+{% block content %} 
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <!-- Mobile Specific Metas -->
+ 	<script type="text/javascript">
+		$(function(){
+			$('.mp-slider').cycle({
+				pager: '#mp-pags',
+				timeout:2500,
+				pagerAnchorBuilder: pagerFactory
+				});
+			function pagerFactory(index, slide) {
+				var titles = []
+				titles[0] = $("#mp-pags-cont li:eq(0)").text()
+				titles[1] = $("#mp-pags-cont li:eq(1)").text()
+				titles[2] = $("#mp-pags-cont li:eq(2)").text()
+			return '<li><a href="#">'+(titles[index])+'</a></li>';
+			}; 
+		})
+	</script>
+</head>
+<body id="page1">
+<!-- Header -->
+<header>
+    <div class="inner">
+       <img src="/" >
+	</div>
+    <div class="slider-container">
+        <div class="mp-slider">
+            <div><img src="/media/images/imagen11.jpg" alt=""></div>
+            <div><img src="/media/images/imagen12.jpg" alt=""></div>
+            <div><img src="/media/images/imagen13.jpg" alt=""></div>
+        </div>
+    </div>
+</header>
+<table>
+	<tr>
+		<td><h1>Bienvenido</h1></td>
+	</tr>
+	<tr>
+		<td><p>Te damos la bienvenida a nuestra página web, en ella te invitamos a descubrir nuestra sabrosa pizza casera, platos, pastas, bebidas y postres, con un sabor auténtico que miman tu paladar.</p>
+		</td>
+	</tr>
+	<tr>
+		<td><h2>Conócenos</h2></td>
+	</tr>
+	<tr>
+		<td>
+			<p>Para cualquier sugerencia o consulta, no dudes en contactar con nosotros.<br>Estaremos encantados de ayudarte.<br>También estamos disponibles en el teléfono: <span style="font-weight: bold">91 755 15 64</span>.</p>
+			<p> <a href="{% url "vista_about" %}">Más Información</a></p>
+	</td>
+	</tr>	
+</table>
+<br><br>
+{% if user.is_authenticated %}
+	<p>Bienvenido {{ user.username }}</p>
+	{% if user.get_profile.photo %}
+		<img src="/media/{{ user.get_profile.photo }}" width="100px" height="100px"/>
+	{% endif %}
+	{% if user.get_profile.telefono %}
+		<p>Numero Tel. {{ user.get_profile.telefono }}</p>
+	{% endif %}
+	{% if user.get_profile.correo %}
+		<p>Email {{ user.get_profile.correo }}</p>
+	{% endif %}
+{% endif %}
+</body>
+
+{% endblock %}

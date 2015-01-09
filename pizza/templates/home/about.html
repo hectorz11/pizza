@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block title %} Acerca de ... {% endblock %}
+{% block content %}
+
+<h2>Pagina web de Pizza:</h2>
+<form action="." method="POST" enctype="multipart/form-data">
+<table width="85%" align="center" border=1 >                  
+	<tr>
+		<td colspan="2">
+			<input class="formulaire" value="Nombre*" onblur="if(this.value=='') this.value='Nombre*'" onfocus="if(this.value=='Nombre*') this.value=''" />
+		</td>
+	</tr>	  
+	<tr>
+		<td colspan="2">                        
+			<input class="formulaire" value="Correo electrónico*" onblur="if(this.value=='') this.value='Correo electrónico*'" onfocus="if(this.value=='Correo electrónico*') this.value=''" />
+		</td>
+	</tr>
+	<tr>
+		<td width="75%" class="td">
+			<input class="formulaire" value="Teléfono*" onblur="if(this.value=='') this.value='Teléfono*'" onfocus="if(this.value=='Teléfono*') this.value=''" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">&nbsp;</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<input class="formulaire" value="Asunto*" onblur="if(this.value=='') this.value='Asunto*'" onfocus="if(this.value=='Asunto*') this.value=''" />
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<textarea class="formulaire" id="Mensaje" name="Mensaje" rows="5" cols="100" onblur="if(this.value=='') this.value='Mensaje*'" onfocus="if(this.value=='Mensaje*') this.value=''">Mensaje*</textarea>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<label>
+            <input type="checkbox" value="Yes" />   
+            <span class="formulaire_acepto">He leído y acepto el Aviso Legal y la Política de Privacidad.*</span>
+			</label>
+			<label>
+			<input type="checkbox" value="Yes" />
+			<span class="formulaire_acepto">Marque con una "x" si no desea recibir comunicaciones por medios electrónicos.</span>
+			</label>
+			<label>
+			<input type="checkbox" value="Yes" />
+			<span class="formulaire_acepto">Marcar con una "x" si no desea recibir comunicaciones por SMS.</span>
+			</label>
+		</td>
+		<td>
+			<textarea class="formulaire" rows="6" cols="40" readonly>Las respuestas a las preguntas de este formulario son necesarias para procesar su solicitud. Al rellenar este formulario, el usuario consiente en el tratamiento de sus datos personales.
+			Conforme a la Ley 34/2002 de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSICE) y de la Ley Orgánica 15/1999, de Protección de Datos Personales, sus datos personales serán registrados en un archivo propiedad de PIZZERIAS DI LUIGI, S.L., cuya finalidad será la gestión de sus sugerencias, quejas y/o reclamaciones.
+			Le comunicamos que tiene derecho de oposición, acceso, rectificación y cancelación de sus datos mediante solicitud dirigida a la dirección de correo electrónico establecida a tal efecto: info@pizzeriasdicarlo.es, o a la dirección postal: PIZZERIAS DI LUIGI, S.L., calle Vicenta Villegas nº 2, 28047, Madrid. Para mayor información sobre la identidad y dirección del responsable del tratamiento de sus datos, diríjase a Aviso Legal.
+			</textarea>
+		</td>
+	</tr> 
+	<tr align="center">
+		<td>
+            <button type="reset" class="btn btn-small btn-primary">Limpiar</button>
+		</td>
+		<td align="left">
+            <button type="reset" class="btn btn-small btn-primary">Enviar</button>
+		</td>
+	</tr>
+</table>
+</form>
+<p>Version Django: {{ version }}</p>
+{% endblock %}

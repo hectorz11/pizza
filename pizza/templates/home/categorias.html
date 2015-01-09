@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %} Lista de Pizzas {% endblock %}
+{% block content %}
+
+<h3>Catalogo de Categorias:</h3>
+{% if categorias %}
+	<table class="table table-hover" id="tabla_productos">
+		<thead>
+			<tr>
+				<td><h3>Categoria</h3></td>
+				<td><h3>Descripcion</h3></td>
+			</tr>
+		</thead>
+	{% for p in categorias %}
+		<tbody>
+			<tr id="tr{{p.id}}">
+				<td>{{p.nombre}}</td>
+				<td>{{p.descripcion}}</td>
+				<td><a class="btn" href="/categoria/{{p.id}}/"><i class="icon-search"></i> Ver </a></td>
+		</tbody>
+	{% endfor %}
+	</table>
+{% else %}
+	<h2>No existen categorias activos a la venta :(</h2>
+{% endif %}
+{% if categorias %}
+    <div class="pagination">
+    <ul>
+    <li><a href="/categorias/page/1"> << </a></li>
+		{% if categorias.has_previous %}
+		<li><a href="/categorias/page/{{categorias.previous_page_number }}/">Prev</a></li>
+		{% else %}
+		<li><a href="#">Prev</a></li>
+		{% endif %}
+		{% if categorias.has_next %}
+		<li><a href="/categorias/page/{{categorias.next_page_number }}/">Next</a></li>
+		{% else %}
+		<li><a href="#">Next</a></li>
+		{% endif %}
+		<li><a href="/categorias/page/{{categorias.paginator.num_pages }}/"> >> </a></li>
+		</ul>
+    </div>
+	<h4>Pagina {{categorias.number}} de {{categorias.paginator.num_pages}}</h4>
+{% endif %}
+{% endblock %}

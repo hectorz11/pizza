@@ -1,0 +1,16 @@
+{% extends 'base.html'%}
+{% block title %} Agregar Carrito{% endblock %}
+{% block content %}
+
+	<form action="." method="POST" enctype="multipart/form-data">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button type="submit" class="btn btn-small btn-primary">Guardar</button>
+		<button type="reset" class="btn btn-small btn-primary">Limpiar</button>
+	</form>
+	<br>
+	{{ informacion }}
+	<br>
+<a href="javascript:window.history.go(-1);">Regresar a la lista</a>
+
+{% endblock %}

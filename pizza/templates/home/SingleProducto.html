@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %} {{ producto.nombre }} {% endblock %}
+{% block content %}
+
+<h1> {{ producto.nombre }} </h1><br>
+<table class="table table-hover">
+	<tr>
+		<td><img src="/media/{{ producto.imagen }}" width="300px" height="300px"/></td>
+		<td><center><i> {{ producto.descripcion }} </i></center></td>
+	</tr>
+	<tr>
+		<td><h4>Precio :</h4></td> 
+		<td><p>S/.{{ producto.precio }} </p></td>
+	</tr>
+</table>
+<h4>Categorias :</h4>
+{% for cat in categorias %}
+	<tr>
+		<td><span class="btn"><a href="/categoria/{{cat.id}}">{{ cat.nombre }}</span></td>
+		<td><a class="btn" href="/categoria/{{cat.id}}/"><i class="icon-search"></i></a></td>
+	</tr>
+{% endfor %}
+<br><br>
+<a href="javascript:window.history.go(-1);" class="btn btn-primary">Regresar a la Lista</a>
+
+{% endblock %}

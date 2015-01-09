@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block title %} Lista de Pizzas {% endblock %}
+{% block content %}
+
+<!--IniciaModal-->
+ <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+    <h3 id="myModalLabel">Eliminar Pizza</h3>
+    </div>
+    <div class="modal-body">
+    <p>¿Realmente desea eliminar el producto <span id="modal_name"></span>?</p>
+    </div>
+    <div class="modal-footer">
+        <form method="post" id="frmEliminar">
+            {% csrf_token %}
+            <input type="hidden" id="modal_idProducto" name="product_id">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+        </form>
+    </div>
+</div>
+<!--EndModal-->
+
+<h3>Catalogo de Pizzas:</h3>
+
+{% if user.is_authenticated and user.is_staff %}
+	<a class="btn" href="{% url 'vista_agregar_producto' %}"><i class="icon-plus"></i> Nuevo </a><br>
+{% endif %}
+{% if productos %}
+	<table class="table table-hover" id="tabla_productos">
+		<thead>
+			<tr>
+				<td><h3>Pizza</h3></td>
+				<td><h3>Precio</h3></td>
+			</tr>
+		</thead>
+	{% for p in productos %}
+		<tbody>
+			<tr id="tr{{p.id}}">
+				<td>{{p.nombre}}</td>
+				<td>S/. {{p.precio}}</td>
+				<td><a class="btn" href="/producto/{{p.id}}/"><i class="icon-search"></i> Ver </a></td>
+				<td><a class="btn" href="{% url "vista_agregar_carrito" %}"><i class="icon-shopping-cart"></i> Comprar </a></td>
+				{% if user.is_authenticated and user.is_staff %}
+					<td><a class="btn" href="/edit/producto/{{p.id}}"><i class="icon-pencil"></i> Editar</a></td>
+					<td><a href="#myModal" role="button" class="btn btn-danger delete" data-toggle="modal" id="{{p.id}}" data-name="{{p.nombre}}"><i class="icon-trash icon-white"></i> Eliminar</a></td>
+				{% endif %}
+			</tr>
+		</tbody>
+	{% endfor %}
+	</table>
+{% else %}
+	<h2>No existen productos activos a la venta :(</h2>
+{% endif %}
+{% if productos %}
+    <div class="pagination">
+    <ul>
+    <li><a href="/productos/page/1"> << </a></li>
+		{% if productos.has_previous %}
+		<li><a href="/productos/page/{{productos.previous_page_number }}/">Prev</a></li>
+		{% else %}
+		<li><a href="#">Prev</a></li>
+		{% endif %}
+		{% if productos.has_next %}
+		<li><a href="/productos/page/{{productos.next_page_number }}/">Next</a></li>
+		{% else %}
+		<li><a href="#">Next</a></li>
+		{% endif %}
+		<li><a href="/productos/page/{{productos.paginator.num_pages }}/"> >> </a></li>
+		</ul>
+    </div>
+	<h4>Pagina {{productos.number}} de {{productos.paginator.num_pages}}</h4>
+{% endif %}
+{% endblock %}

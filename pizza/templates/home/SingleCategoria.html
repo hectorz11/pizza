@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %} Categoria {% endblock %}
+{% block content %}
+
+<!--IniciaModal-->
+ <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+    <h3 id="myModalLabel">Eliminar Pizza</h3>
+    </div>
+    <div class="modal-body">
+    <p>¿Realmente desea eliminar el producto <span id="modal_name"></span>?</p>
+    </div>
+    <div class="modal-footer">
+        <form method="post" id="frmEliminar">
+            {% csrf_token %}
+            <input type="hidden" id="modal_idProducto" name="product_id">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+        </form>
+    </div>
+</div>
+<!--EndModal-->
+<table>
+	<tr>
+		<td><p><b>Categoria:</b></p></td>
+		<td><p>{{ categoriaProducto.nombre}}</p></td>
+	</tr>
+	<tr>
+		<td><p><b>Descripcion:</b></p></td>
+		<td><p>{{ categoriaProducto.descripcion }}</p></td>
+	</tr>
+</table>
+<table class="table table-hover" id="tabla_productos">
+<h4>Unidades</h4>
+{% if user.is_authenticated and user.is_staff %}
+	<a class="btn" href="{% url 'vista_agregar_producto' %}"><i class="icon-plus"></i> Nuevo </a><br>
+{% endif %}
+{% for registro in resultados %}
+	<tr>
+	<td><span class="btn"><a href="/producto/{{registro.id}}">{{ registro.nombre }}</span></td>
+	<td><a class="btn" href="/producto/{{registro.id}}/"><i class="icon-search"></i> Ver </a></td>
+	<td><a class="btn" href="{% url "vista_agregar_carrito" %}"><i class="icon-shopping-cart"></i> Comprar </a></td>
+	{% if user.is_authenticated and user.is_staff %}
+		<td><a class="btn" href="/edit/producto/{{registro.id}}/"><i class="icon-pencil"></i>  Editar </a></td>
+		<td><a href="#myModal" role="button" class="btn btn-danger delete" data-toggle="modal" id="{{registro.id}}" data-name="{{registro.nombre}}"><i class="icon-trash icon-white"></i>Eliminar</a></td>
+	{% endif %}
+	</tr>
+{% endfor %}
+</table>
+
+<a href="javascript:window.history.go(-1);" class="btn btn-primary">Regresar a la Lista</a>
+
+{% endblock %}
